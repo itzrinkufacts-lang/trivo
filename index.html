@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivo - Ultimate Entertainment</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splashScreen" class="screen active">
+        <div class="splash-container">
+            <div class="logo">TRIVO</div>
+            <div class="creator">From RKS🇮🇳</div>
+        </div>
+    </div>
+
+    <!-- Signup Screen -->
+    <div id="signupScreen" class="screen">
+        <div class="signup-container">
+            <div class="signup-header">
+                <div class="logo">TRIVO</div>
+                <p class="tagline">Your Ultimate Entertainment App</p>
+            </div>
+            
+            <form id="signup-form" class="signup-form">
+                <div class="input-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" required placeholder="Enter your name">
+                </div>
+                
+                <div class="input-group">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" required min="13" max="100" placeholder="Your age">
+                </div>
+                
+                <div class="input-group">
+                    <label>Gender</label>
+                    <div class="gender-options">
+                        <label class="radio-option">
+                            <input type="radio" name="gender" value="male" required>
+                            <span>Male</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="gender" value="female">
+                            <span>Female</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="gender" value="other">
+                            <span>Other</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label>Your Interests (Choose at least 2)</label>
+                    <div class="interests-grid">
+                        <label class="interest-option">
+                            <input type="checkbox" name="interests" value="reels">
+                            <span>🎬 Reels</span>
+                        </label>
+                        <label class="interest-option">
+                            <input type="checkbox" name="interests" value="music">
+                            <span>🎵 Music</span>
+                        </label>
+                        <label class="interest-option">
+                            <input type="checkbox" name="interests" value="movies">
+                            <span>🎥 Movies</span>
+                        </label>
+                        <label class="interest-option">
+                            <input type="checkbox" name="interests" value="cricket">
+                            <span>🏏 Cricket</span>
+                        </label>
+                        <label class="interest-option">
+                            <input type="checkbox" name="interests" value="comedy">
+                            <span>😂 Comedy</span>
+                        </label>
+                        <label class="interest-option">
+                            <input type="checkbox" name="interests" value="motivation">
+                            <span>💪 Motivation</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn">Start Exploring</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main App Screen -->
+    <div id="appScreen" class="screen">
+        <!-- Top Navigation Bar -->
+        <header class="top-nav">
+            <div class="nav-logo">TRIVO</div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search videos, music, movies...">
+                <button class="search-btn">🔍</button>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Home Section -->
+            <section id="homeSection" class="app-section active">
+                <!-- Categories Row -->
+                <div class="categories-section">
+                    <div class="categories-scroll">
+                        <button class="category-btn active" data-category="trending">🔥 Trending</button>
+                        <button class="category-btn" data-category="music">🎵 Music</button>
+                        <button class="category-btn" data-category="comedy">😂 Comedy</button>
+                        <button class="category-btn" data-category="sports">⚽ Sports</button>
+                        <button class="category-btn" data-category="tech">📱 Tech</button>
+                        <button class="category-btn" data-category="news">📰 News</button>
+                    </div>
+                </div>
+
+                <!-- Video Feed -->
+                <section class="video-feed" id="videoFeed">
+                    <div class="loading-spinner">Loading your content...</div>
+                </section>
+            </section>
+
+            <!-- Reels Section -->
+            <section id="reelsSection" class="app-section">
+                <div class="reels-container" id="reelsContainer">
+                    <div class="loading-reels">Loading reels...</div>
+                </div>
+
+                <!-- Reels Overlays -->
+                <div class="reels-top-overlay">
+                    <div class="reels-header">
+                        <button class="back-btn" onclick="app.showSection('homeSection')">‹</button>
+                        <div class="reels-title">Reels</div>
+                        <button class="icon-btn">📷</button>
+                    </div>
+                </div>
+
+                <div class="reels-bottom-overlay">
+                    <div class="reel-info">
+                        <div class="creator-info">
+                            <div class="creator-avatar">👤</div>
+                            <div class="creator-name">@creator</div>
+                            <button class="follow-btn">Follow</button>
+                        </div>
+                        <div class="reel-description">Amazing content! #viral</div>
+                        <div class="audio-info">
+                            <span>🎵</span>
+                            <span>Original Sound</span>
+                        </div>
+                    </div>
+
+                    <div class="reel-actions">
+                        <div class="action-group">
+                            <button class="action-btn" onclick="app.handleLike(this)">
+                                <span>🤍</span>
+                                <span class="action-count">1.2K</span>
+                            </button>
+                            <button class="action-btn" onclick="app.handleComment()">
+                                <span>💬</span>
+                                <span class="action-count">245</span>
+                            </button>
+                            <button class="action-btn" onclick="app.handleShare()">
+                                <span>↗️</span>
+                                <span class="action-count">Share</span>
+                            </button>
+                            <button class="action-btn" onclick="app.handleSave(this)">
+                                <span>⭐</span>
+                                <span class="action-count">Save</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Music Section -->
+            <section id="musicSection" class="app-section">
+                <div class="music-header">
+                    <h2>🎵 Music & Songs</h2>
+                    <p>Enjoy unlimited music</p>
+                </div>
+                
+                <div class="playlists-grid">
+                    <div class="playlist-card" onclick="app.playMusic('Bollywood Hits')">
+                        <div class="playlist-icon">🎭</div>
+                        <div class="playlist-info">
+                            <h3>Bollywood Hits</h3>
+                            <p>Latest Hindi songs</p>
+                        </div>
+                    </div>
+                    
+                    <div class="playlist-card" onclick="app.playMusic('Punjabi Beats')">
+                        <div class="playlist-icon">💃</div>
+                        <div class="playlist-info">
+                            <h3>Punjabi Beats</h3>
+                            <p>Best of Punjabi music</p>
+                        </div>
+                    </div>
+                    
+                    <div class="playlist-card" onclick="app.playMusic('Romantic Mood')">
+                        <div class="playlist-icon">💖</div>
+                        <div class="playlist-info">
+                            <h3>Romantic Mood</h3>
+                            <p>Love songs collection</p>
+                        </div>
+                    </div>
+                    
+                    <div class="playlist-card" onclick="app.playMusic('Party Anthems')">
+                        <div class="playlist-icon">🎉</div>
+                        <div class="playlist-info">
+                            <h3>Party Anthems</h3>
+                            <p>Dance to the beats</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Music Player -->
+                <div class="music-player" id="musicPlayer">
+                    <div class="now-playing">
+                        <div class="track-info">
+                            <div class="track-title">Select a playlist to start</div>
+                            <div class="track-artist">Trivo Music</div>
+                        </div>
+                    </div>
+                    <div class="player-controls">
+                        <button class="control-btn" onclick="app.previousTrack()">⏮</button>
+                        <button class="control-btn play-btn" onclick="app.togglePlay()">▶️</button>
+                        <button class="control-btn" onclick="app.nextTrack()">⏭</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Movies Section -->
+            <section id="moviesSection" class="app-section">
+                <div class="movies-header">
+                    <h2>🎥 Movies & Trailers</h2>
+                    <p>Latest movies and clips</p>
+                </div>
+                
+                <div class="movies-grid">
+                    <div class="movie-card" onclick="app.playMovie('Action Movie Trailer')">
+                        <div class="movie-thumbnail" style="background: linear-gradient(45deg, #FF0084, #D400FF);">
+                            <div class="movie-play">▶️</div>
+                        </div>
+                        <div class="movie-info">
+                            <h3>Action Movie 2024</h3>
+                            <p>Latest Bollywood action</p>
+                            <span class="movie-duration">2:30</span>
+                        </div>
+                    </div>
+                    
+                    <div class="movie-card" onclick="app.playMovie('Comedy Clip')">
+                        <div class="movie-thumbnail" style="background: linear-gradient(45deg, #00eaff, #00ff88);">
+                            <div class="movie-play">▶️</div>
+                        </div>
+                        <div class="movie-info">
+                            <h3>Comedy Special</h3>
+                            <p>Funny moments compilation</p>
+                            <span class="movie-duration">5:15</span>
+                        </div>
+                    </div>
+                    
+                    <div class="movie-card" onclick="app.playMovie('Romantic Scene')">
+                        <div class="movie-thumbnail" style="background: linear-gradient(45deg, #ff6b6b, #ffa726);">
+                            <div class="movie-play">▶️</div>
+                        </div>
+                        <div class="movie-info">
+                            <h3>Romantic Scene</h3>
+                            <p>Best romantic moments</p>
+                            <span class="movie-duration">3:45</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="profileSection" class="app-section">
+                <div class="profile-header">
+                    <div class="profile-avatar">👤</div>
+                    <div class="profile-info">
+                        <h2 id="userName">User</h2>
+                        <p>Trivo Member</p>
+                    </div>
+                </div>
+                
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">1.2K</div>
+                        <div class="stat-label">Videos Watched</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">45</div>
+                        <div class="stat-label">Hours</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">23</div>
+                        <div class="stat-label">Saved</div>
+                    </div>
+                </div>
+                
+                <div class="profile-actions">
+                    <button class="profile-btn" onclick="app.showSettings()">
+                        <span>⚙️</span>
+                        <span>Settings</span>
+                    </button>
+                    <button class="profile-btn" onclick="app.showInterests()">
+                        <span>🎯</span>
+                        <span>Change Interests</span>
+                    </button>
+                    <button class="profile-btn" onclick="app.showHistory()">
+                        <span>📚</span>
+                        <span>Watch History</span>
+                    </button>
+                    <button class="profile-btn" onclick="app.contactSupport()">
+                        <span>💬</span>
+                        <span>Support</span>
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" onclick="app.showSection('homeSection')">
+                <span>🏠</span>
+                <span>Home</span>
+            </button>
+            <button class="nav-item" onclick="app.showSection('reelsSection')">
+                <span>🎬</span>
+                <span>Reels</span>
+            </button>
+            <button class="nav-item" onclick="app.showSection('musicSection')">
+                <span>🎵</span>
+                <span>Music</span>
+            </button>
+            <button class="nav-item" onclick="app.showSection('moviesSection')">
+                <span>🎥</span>
+                <span>Movies</span>
+            </button>
+            <button class="nav-item" onclick="app.showSection('profileSection')">
+                <span>👤</span>
+                <span>Profile</span>
+            </button>
+        </nav>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+  </html>
